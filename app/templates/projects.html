@@ -1,0 +1,82 @@
+{% extends 'basic.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+{% block Title %}
+
+<title>Projects</title>
+    {% endblock %}
+</head>
+{% block body %}
+<body class="page wide top_panel_above usermenu_show ">
+
+	<div class="main_content">
+		<div class="boxedWrap">
+
+
+
+			<div id="topOfPage" class="topTabsWrap">
+				<div class="main">
+					<div class="speedBar">
+						<a class="home" href="/">Home</a>
+
+						<span class="breadcrumbs_delimiter"> / </span>
+						<span class="current">Projects</span>
+					</div>
+					<h3 class="pageTitle h3">Projects</h3>
+				</div>
+			</div>
+
+			<div class="mainWrap without_sidebar">
+				<div class="main" role="main">
+					<div class="content">
+						<div class="itemscope" itemscope itemtype="http://schema.org/Article">
+							<section class="post postAlter no_margin page">
+								<article class="post_content">
+									<div class="post_text_area" itemprop="articleBody">
+										<div class="sc_blogger sc_blogger_horizontal style_portfolio3 portfolioWrap">
+
+											<section class="portfolio isotope folio3col" data-columns="3">
+                                                {% for project in project %}
+												<article class="isotopeElement hover_Dir odd flt_251 flt_250">
+													<div class="hover hoverDirShow">
+														<div class="thumb">
+															<img alt="Bedroom Design Ideas" src="{{ project.img.url }}" style="height: 252px; width: 350px">
+														</div>
+														<div class="folioShowBlock">
+															<div class="folioContentAfter">
+																<h4>
+																<a >{{ project.name }}</a>
+																</h4>
+																<p>{{ project.desc|slice:"0:80" }}...</p>
+																<div class="masonryInfo">
+																	Posted
+																	<a href="#" class="post_date">February 25, 2015</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</article>
+												{% endfor %}
+											</section>
+										</div>
+									</div>
+								</article>
+							</section>
+						</div>
+					</div>  
+				</div>
+			</div>
+
+
+		</div> 
+	</div> 
+
+	<div id="preloader" class="preloader">
+	    <div class="preloader_image"></div>
+	</div>
+{% endblock %}
+
+</body>
+</html>

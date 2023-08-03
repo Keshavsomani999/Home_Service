@@ -1,0 +1,116 @@
+{% extends 'basic.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+{% block Title %}
+
+<title>Audio Visual Service</title>
+    {% endblock %}
+</head>
+{% block body %}
+<body class="home page fullscreen top_panel_above sidemenu_left usermenu_show">
+
+
+	<div class="main_content">
+		<div class="boxedWrap">
+
+
+
+			<div id="topOfPage" class="topTabsWrap">
+				<div class="main">
+					<div class="speedBar">
+						<a class="home" href="/">Home</a>
+
+						<span class="breadcrumbs_delimiter"> / </span>
+						<span class="current">Service / Audio&Visual</span>
+					</div>
+					<h3 class="pageTitle h3">Service / Audio&Visual</h3>
+				</div>
+			</div>
+
+			<div class="mainWrap without_sidebar">
+				<div class="content">
+					<div class="itemscope" itemscope itemtype="http://schema.org/Article">
+						<section class="post post_format_standard postAlter no_margin page type-page status-publish hentry">
+							<article class="post_content">
+								<div class="post_text_area" itemprop="articleBody">
+
+									<div class="vc_row wpb_row vc_row-fluid">
+										<div class="wpb_column vc_column_container vc_col-sm-12">
+											<div class="wpb_wrapper">
+												<div class="sc_content main">
+													<h1 class="sc_title sc_aligncenter sc_title_regular">Department Page</h1>
+													<div class="sc_subsection bg_tint_none sc_aligncenter margin_bottom_small">
+														<div class="wpb_text_column wpb_content_element ">
+															<div class="wpb_wrapper">
+																<p>It&#8217;s our department&#8217;s page template where you can place information about team of specialists, services provided,<br/>
+																certificates and work schedule etc.</p>
+															</div>
+														</div>
+													</div>
+													<div class="sc_team no_padding">
+														<div class="sc_columns columnsWrap">
+
+                                                            {% for lab in lab %}
+                                                                {% if lab.Audio_visual %}
+
+															<div class="columns1_3" data-animation="animated fadeInUp">
+																<div class="sc_team_item sc_team_item_1 odd first">
+																	<div class="sc_team_item_avatar">
+																		<img alt="03.jpg" src="{{ lab.img.url }}">
+																		<div class="sc_team_item_description">{{ lab.desc|slice:"0:50" }}...</div>
+																	</div>
+																	<div class="sc_team_item_info">
+																		<h3 class="sc_team_item_title">
+																			<a href="/handyman/{{ lab.id }}">{{ lab.name }}</a>
+																		</h3>
+																		<div class="sc_team_item_position theme_accent2">{{ lab.field }}</div>
+																		<ul class="sc_team_item_socials">
+																			{% if lab.Facebook_link is not null %}
+                                                                                    <li>
+																				<a href="{{ lab.Facebook_link }}" class="social_icons icon-facebook" target="_blank"> </a>
+																			</li>
+																			{% endif %}
+
+
+																		</ul>
+																	</div>
+																</div>
+															</div>
+                                                                {% endif %}
+                                                            {% endfor %}
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="sc_line sc_line_style_solid no_margin"></div>
+											</div>
+										</div>
+									</div>
+
+
+
+
+									<div class="tagsWrap"></div>
+								</div>
+							</article>
+						</section>
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div id="preloader" class="preloader">
+	    <div class="preloader_image"></div>
+	</div>
+
+{% endblock %}
+</body>
+</html>

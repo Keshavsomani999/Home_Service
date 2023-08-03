@@ -1,0 +1,474 @@
+{% extends 'basic.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+{% block Title %}
+
+<title>Handyman</title>
+    {% endblock %}
+       {% block link %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel='stylesheet' id='theme-skin-css' href='{% static 'css/custom.css' %}' type='text/css' media='all'/>
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       {% endblock %}
+</head>
+{% block body %}
+<body class="home page fullscreen top_panel_above usermenu_show" style="font-size: 16px;">
+
+	<div class="main_content">
+		<div class="boxedWrap">
+
+
+
+			<div id="topOfPage" class="topTabsWrap">
+				<div class="main">
+					<div class="speedBar">
+						<a class="home" href="index.html">Home</a>
+						<span class="breadcrumbs_delimiter"> / </span>
+						<a class="all" href="#">All Posts</a>
+						<span class="breadcrumbs_delimiter"> / </span>
+						<span class="current">Handyman Personal Page</span>
+					</div>
+					<h3 class="pageTitle h3">Handyman Personal Page</h3>
+				</div>
+			</div>
+
+			<div class="mainWrap without_sidebar">
+				<div class="content">
+					<div class="itemscope" itemscope itemtype="http://schema.org/Article">
+						<section class="post postAlter no_margin page">
+							<article class="post_content">
+								<div class="post_text_area" itemprop="articleBody">
+
+									<div class="vc_row wpb_row vc_row-fluid">
+										<div class="wpb_column vc_column_container vc_col-sm-12">
+											<div class="wpb_wrapper">
+												<div class="sc_content main">
+													<h1 class="sc_title sc_aligncenter sc_title_regular">About The Handyman</h1>
+													<div class="sc_subsection bg_tint_none sc_aligncenter margin_bottom_small">
+														<div class="wpb_text_column wpb_content_element ">
+															<div class="wpb_wrapper">
+																<p>We will help you build strong online business by creating a professional website which best suits your needs<br/>
+																and the needs of your target audience.</p>
+															</div>
+														</div>
+													</div>
+													<div class="columnsWrap sc_columns no_margin sc_columns_count_3">
+														<div class="columns1_3 sc_column_item sc_column_item_1 odd first">
+															<form action="{% url 'submit_review' lab.id %}" method="POST">
+					{% csrf_token %}
+					<h5>Write Your Review</h5>
+
+					<div>
+						<!-- Rating stars -->
+						<label>How do you rate this product?</label>
+						<br>
+						<div class="rate">
+							<input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+							<input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
+							<input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+							<input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
+							<input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
+							<input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
+							<input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+							<input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
+							<input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+							<input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+						</div>
+<br>
+						Review Title:
+						<input type="text" class="form-control" name="subject">
+						<br>
+						Review:
+						<textarea name="review" rows="4" class="form-control"></textarea>
+						<br>
+						{% if user.is_authenticated %}
+                            <div class="row">
+								<input type="submit" value="Submit Review" class="btn btn-primary">
+
+                                <button type="button" style="width: 150px;" class="btn btn-primary btn-xl ml-3" data-toggle="modal" data-target="#exampleModalScrollable">Show Reviews </button>
+                            </div>
+
+						{% else %}
+						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
+						{% endif %}
+
+					</div>
+
+				</form>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Reviews</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="">
+                                                                {% for review in review %}
+                                                                    {% if review.product == lab  %}
+
+
+                                                                        <div class="card mt-2">
+                                                                            <div class="card-header">
+                                                                                <div class="row ml-2 mt-1">
+                                                                                     <div class="icon-user "></div>
+                                                                                    <h5 class="ml-2" style="margin-bottom: -20px;">{{ review.user }}</h5>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            {% if review.rating == 3.0 or 3.5 %}
+                                                                                    <div class="row ml-3 mt-2" style="color: #00CC33">
+                                                                                    <div class="icon-star-1"></div>
+                                                                                    <div class="icon-star-1"></div>
+                                                                                    <div class="icon-star-1"></div><p class="ml-3">{{ review.rating }}</p>
+
+                                                                                    </div>
+                                                                            {% endif %}
+                                                                            <div class="card-body mt-n3" style="line-height: 100%;">
+
+                                                                                <p class="card-text">{{ review.subject }}</p>
+                                                                                <p class="card-text">{{ review.review }}</p>
+                                                                                <p class="card-text float-right">{{ review.created_at }}</p>
+
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        {% endif %}
+
+                                                                {% endfor %}
+                                                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+														</div>
+														<div class="columns1_3 sc_column_item sc_column_item_2 even">
+															<div class="sc_team no_padding margin_right_small">
+																<div class="sc_columns columnsWrap">
+																	<div class="columns1_1" data-animation="animated fadeInUp">
+																		<div class="sc_team_item sc_team_item_1 odd first">
+																			<div class="text-center">
+																				<img alt="03.jpg" src="{{ lab.img.url }}">
+
+																			</div>
+																			<div class="sc_team_item_info">
+																				<h3 class="sc_team_item_title">
+																				<a>{{ lab.name }}</a>
+																				</h3>
+																				<div class="sc_team_item_position theme_accent2">{{ lab.field }}</div>
+																				<ul class="sc_team_item_socials">
+																					<li>
+
+                                                                                        <P class="">AGE: {{ lab.age }}</P>
+																					</li>
+
+																				</ul>
+																			</div>
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+                                                                        <div class="columns1_3 sc_column_item sc_column_item_3 odd">
+															<div class="sc_accordion sc_accordion_style_1 no_margin" data-active="0">
+                                                                    <div class="columnsWrap sc_columns sc_columns_count_1">
+
+                                                                <div>
+																	<h4 class="sc_accordion_title"><b>Description</b></h4>
+																	<div class="sc_accordion_content" style="width: 340px;">{{ lab.desc }}</div>
+																</div>
+
+
+                                                            <div class="columns-4">
+
+                                                            </div>
+
+														<div class="columns1_1 sc_column_item sc_column_item_1 odd first sc_center" style="margin-top: 22%">
+
+                                                            <div class="sc_button sc_button_style_global sc_button_size_big squareButton global big">
+																<h2 class="mt-4 mr-3">Rs. {{ lab.arival_price }}</h2>
+															</div>
+
+                                                            <div class="sc_button sc_button_style_global sc_button_size_big squareButton global big">
+																<a href="#order" class="">Book Now</a>
+															</div>
+														</div>
+
+
+
+
+													</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="sc_line sc_line_style_solid no_margin sc_section grey_section"></div>
+
+                                                <!-- Place order -->
+                                                      <div id="order" class="m-5 my-3">
+                                                        <h1 class="mt-5" style="text-align: center">Fill The Information</h1>
+                                                          <form method="post" >
+                                                              {% csrf_token %}
+                                                               <div class="form-row">
+                                                                   <div class="form-group col-md-4">
+                                                                       <input type="hidden" name="labour" value="{{ lab.name }}">
+                                                                       <input type="hidden" name="price" value="{{ lab.arival_price }}">
+                                                                       <label for="inputEmail4" >Name</label>
+                                                                       <input type="text" name="name" class="form-control" id="inputEmail4" placeholder="Enter name here" required>
+                                                                   </div>
+
+                                                                   <div class="form-group col-md-4">
+                                                                       <label for="Email" >Email</label>
+                                                                       <input type="text" name="email" class="form-control" id="Email" required>
+                                                                   </div>
+                                                                   <div class="form-group col-md-4">
+                                                                       <label for="address" >Address</label>
+                                                                       <input type="text" name="subject" class="form-control" id="address" required>
+                                                                   </div>
+
+
+                                                                   <div class="form-group col-md-4">
+                                                                       <label for="Zip" >Zip</label>
+                                                                        <input type="number" name="zip" class="form-control" id="Zip" required>
+                                                                   </div>
+                                                                   <div class="form-group col-md-4">
+                                                                       <label for="Phone" >Phone No.</label>
+                                                                        <input type="tel" name="phone" class="form-control" id="Phone" required>
+                                                                   </div>
+                                                                   <div class="form-group col-md-4">
+                                                                       <label for="inputState">Service</label>
+                                                                       <select id="inputState" class="form-control" name="test">
+                                                                           <option selected>Choose...</option>
+                                                                           {% if lab.Wiring %}
+                                                                           <option>Cable TV</option>
+                                                                           <option>Internet</option>
+                                                                           <option>Network</option>
+                                                                           <option>Door Bells</option>
+                                                                           <option>Visual</option>
+                                                                           <option>Home Theater</option>
+                                                                           <option>Computer</option>
+                                                                            {% endif %}
+                                                                            {% if lab.Tiling %}
+                                                                           <option>Kitchens</option>
+                                                                           <option>Baths</option>
+                                                                           <option>Floors</option>
+                                                                           <option>Grout Sealing</option>
+                                                                           <option>Tile Repair</option>
+                                                                           <option>Showers</option>
+                                                                           <option>Walls</option>
+                                                                            {% endif %}
+                                                                            {% if lab.Maintenance %}
+                                                                           <option>Door Repair</option>
+                                                                           <option>Carpentry</option>
+                                                                           <option>Termite Damage</option>
+                                                                           <option>Tub & Shower</option>
+                                                                           <option>Weather Proofing</option>
+
+                                                                            {% endif %}
+                                                                            {% if lab.Audio_visual %}
+                                                                           <option>Home Theater</option>
+                                                                           <option>Panel Tv</option>
+                                                                           <option>Projectors</option>
+                                                                           <option>Sound System</option>
+                                                                           <option>Surround Sound</option>
+                                                                            {% endif %}
+
+                                                                            {% if lab.Electrical %}
+                                                                           <option>Switches</option>
+                                                                           <option>Dimmers</option>
+                                                                           <option>Outlets</option>
+                                                                           <option>Light Fixture</option>
+                                                                           <option>Ceiling Fans</option>
+                                                                           <option>Ground Fault Outlet</option>
+                                                                            {% endif %}
+
+                                                                            {% if lab.Plumbing %}
+                                                                           <option>Leaks Repair</option>
+                                                                           <option>Toilet Repair</option>
+                                                                           <option>Kitchens Repair</option>
+                                                                            {% endif %}
+                                                                       </select>
+                                                                   </div>
+                                                                   <div class="form-group col-md-6">
+                                                                       <label for="city" >City</label>
+                                                                        <input type="text" name="city" class="form-control" id="city" required>
+                                                                   </div>
+                                                                   <div class="form-group col-md-6">
+                                                                       <label for="State" >State</label>
+                                                                        <input type="text" name="state" class="form-control" id="State" required>
+                                                                   </div>
+                                                                   <div class="form-group col-md-12">
+                                                                       <label for="Issue" >Issue</label>
+                                                                       <textarea name="message" class="form-control" id="Issue" required></textarea>
+                                                                   </div>
+
+                                                               </div>
+                                                              <input type="submit" style="color: #0b0b0b">
+                                                            </form>
+                                                      </div>
+                                                    <!--place order end -->
+											</div>
+										</div>
+									</div>
+
+
+									<div class="vc_row wpb_row vc_row-fluid">
+										<div class="wpb_column vc_column_container vc_col-sm-12">
+											<div class="wpb_wrapper">
+												<div class="sc_content main no_padding_bottom">
+													<h1 class="sc_title sc_title_regular sc_aligncenter" data-animation="animated fadeInUp">Professional certification</h1>
+													<div class="sc_section sc_undertitle_style_2 bg_tint_none sc_aligncenter" data-animation="animated fadeInUp">
+														<div class="wpb_text_column wpb_content_element ">
+															<div class="wpb_wrapper">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna<br/>
+																aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="sc_content main no_padding_top">
+													<div id="sc_blogger_442037646" class="sc_blogger sc_blogger_horizontal style_portfolio3 portfolioWrap" data-animation="animated fadeInUp">
+														<section class="portfolio isotopeNOanim folio3col" data-columns="3">
+
+                                                            {% if lab.certificate_1_img %}
+															<article class="isotopeElement post_format_standard hover_Dir odd">
+																<div class="hover hoverDirShow">
+																	<div class="thumb">
+																		<img alt="Reed&#8217;s Certificate" src="{{ lab.certificate_1_img.url }}">
+																	</div>
+																	<div class="folioShowBlock">
+																		<div class="folioContentAfter">
+																			<h4>
+																			<a>{{ lab.certificate_1_name }}</a>
+																			</h4>
+
+																		</div>
+																	</div>
+																</div>
+															</article>
+                                                            {% endif %}
+
+
+
+
+                                                            {% if lab.certificate_2_img %}
+															<article class="isotopeElement post_format_standard hover_Dir even">
+																<div class="hover hoverDirShow">
+																	<div class="thumb">
+																		<img alt="Stone&#8217;s Certificate" src="{{ lab.certificate_2_img.url }}">
+																	</div>
+																	<div class="folioShowBlock">
+																		<div class="folioContentAfter">
+																			<h4>
+																			<a>{{ lab.certificate_2_name }}</a>
+																			</h4>
+
+																		</div>
+																	</div>
+																</div>
+															</article>
+                                                        {% endif %}
+
+
+
+
+                                                        {% if lab.certificate_3_img %}
+															<article class="isotopeElement post_format_standard hover_Dir odd">
+																<div class="hover hoverDirShow">
+																	<div class="thumb">
+																		<img alt="Day&#8217;s Certificate" src="{{ lab.certificate_3_img.url }}">
+																	</div>
+																	<div class="folioShowBlock">
+																		<div class="folioContentAfter">
+																			<h4>
+																			<a>{{ lab.certificate_3_name }}</a>
+																			</h4>
+
+																		</div>
+																	</div>
+																</div>
+															</article>
+                                                        {% endif %}
+
+
+
+                                                        {% if lab.certificate_4_img %}
+															<article class="isotopeElement post_format_standard hover_Dir even">
+																<div class="hover hoverDirShow">
+																	<div class="thumb">
+																		<img alt="Doe&#8217;s Certificate" src="{{ lab.certificate_4_img.url }}">
+																	</div>
+																	<div class="folioShowBlock">
+																		<div class="folioContentAfter">
+																			<h4>
+																			<a>{{ lab.certificate_4_name }}</a>
+																			</h4>
+
+																		</div>
+																	</div>
+																</div>
+															</article>
+															{% endif %}
+
+
+
+														</section>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="tagsWrap"></div>
+								</div>  
+							</article>  
+						</section>  
+					</div>    
+
+				</div>
+			</div>
+
+
+
+	</div> 
+
+	<div id="preloader" class="preloader">
+	    <div class="preloader_image"></div>
+	</div>
+    </div>
+{% endblock %}
+
+{% block JS %}
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    {% if thank %}
+        alert('thanks for ordering with us. {{ id }}');
+    {% endif %}
+    </script>
+{% endblock %}
+</body>
+</html>

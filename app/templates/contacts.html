@@ -1,0 +1,132 @@
+{% extends 'basic.html' %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+{% block Title %}
+
+<title>Contact Us</title>
+    {% endblock %}
+
+</head>
+{% block body %}
+<body class="home page fullscreen top_panel_above sidemenu_left usermenu_show">
+
+
+	<div class="main_content">
+		<div class="boxedWrap">
+
+
+
+			<div id="topOfPage" class="topTabsWrap">
+				<div class="main">
+					<div class="speedBar">
+						<a class="home" href="index.html">Home</a>
+						<span class="breadcrumbs_delimiter"> / </span>
+						<a class="all" href="#">All Posts</a>
+						<span class="breadcrumbs_delimiter"> / </span>
+						<span class="current">Contact Us</span>
+					</div>
+					<h3 class="pageTitle h3">Contact Us</h3>
+				</div>
+			</div>
+
+			<div class="mainWrap without_sidebar">
+				<div class="content">
+					<div class="itemscope" itemscope itemtype="http://schema.org/Article">
+						<section class="post post_format_standard postAlter no_margin page type-page status-publish hentry">
+							<article class="post_content">
+								<div class="post_text_area" itemprop="articleBody">
+
+									<div class="vc_row wpb_row vc_row-fluid light_section">
+										<div class="wpb_column vc_column_container vc_col-sm-12">
+											<div class="wpb_wrapper">
+												<div class="sc_content main">
+													<div class="columnsWrap column_block sc_columns sc_columns_count_2">
+														<div class="columns1_2 sc_column_item sc_column_item_1 odd first">
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3652151.2747342857!2d73.87389695!3d26.630739750000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1653127136863!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+															<!--<div id="sc_googlemap_2061796807" class="sc_googlemap sc_googlemap_style_2" data-address="San Francisco, CA 94102, US" data-latlng="" data-zoom="16" data-style="default" data-point="" data-description="San Francisco, CA 94102, US" ></div>-->
+														</div>
+														<div class="columns1_2 sc_column_item sc_column_item_2 even">
+															<h2 class="sc_title sc_title_regular" style="text-align:left;">We Would Love To Hear From You</h2>
+															<div class="wpb_text_column wpb_content_element ">
+																<div class="wpb_wrapper">
+																	<p>The Help Centre page lists out various types of issues that you may have encountered so that there can be quick resolution and you can go back to shopping online. For example, you can get more information regarding order tracking, delivery date changes, help with returns (and refunds), and much more.
+                                                                        It Help Centre also lists out more information that you may need regarding Flipkart Plus, payment, shopping, and more.</p>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div class="columnsWrap sc_columns sc_columns_count_3 margin_top_small">
+														<div class="columns2_3 sc_column_item sc_column_item_1 odd first span_2">
+															<h2 class="sc_title sc_title_regular">Send Us a Message</h2>
+															<div class="sc_contact_form sc_contact_form_contact_1">
+					                                            <form class="contact_1" method="POST" action="/contact/">{% csrf_token %}
+					                                                <div class="">
+																		<div class="">
+						                                                    <input type="text" name="name" id="name" placeholder="Name">
+						                                                </div>
+						                                                <div class="">
+						                                                    <input type="text" name="email" id="email" placeholder="Email">
+						                                                </div>
+						                                                <div class="">
+						                                                    <input type="text" name="subject" id="subject" placeholder="Subject">
+						                                                </div>
+						                                            </div>
+					                                                <div class="message">
+																		<div class="">
+						                                                    <textarea  id="message" class="textAreaSize" name="message" placeholder="Message"></textarea>
+						                                                </div>
+						                                            </div>
+																	<div class="sc_contact_form_button">
+																		<div class="squareButton sc_button_size sc_button_style_global global">
+																			<button type="submit" class="">Send Message</button>
+																		</div>
+																	</div>
+
+
+					                                            </form>
+															</div>
+														</div>
+														<div class="columns1_3 sc_column_item sc_column_item_3 odd after_span_2">
+															<h2 class="sc_title sc_title_regular" style="text-align:left;">Business hours</h2>
+															<div class="wpb_text_column wpb_content_element ">
+																<div class="wpb_wrapper">
+																	<p class="big_text">
+																		Monday &#8211; Friday 9am to 5pm<br />
+																		Saturday &#8211; 9am to 2pm<br />
+																		Sunday &#8211; Closed
+																	</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="tagsWrap"></div>
+								</div>  
+							</article>  
+						</section>  
+					</div>    
+				 
+				</div>  
+			</div>
+
+
+		</div> 
+	</div> 
+
+	<div id="preloader" class="preloader">
+	    <div class="preloader_image"></div>
+	</div>
+
+{% endblock %}
+
+	<!--<script type='text/javascript' src='custom_tools/js/_customizer.js'></script>-->
+
+</body>
+</html>
