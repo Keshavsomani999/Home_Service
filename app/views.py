@@ -3,13 +3,13 @@ from django.contrib import messages
 from .models import Labours,Contact,Orders,Project,ReviewRating
 from django.contrib.auth.models import User,auth
 from .forms import ReviewForm
-from django.views.decorators.csrf import csrf_exempt
-from .PayTm import Checksum
+# from django.views.decorators.csrf import csrf_exempt
+# from .PayTm import Checksum
 from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import send_mail
-from twilio.rest import Client
-MERCHANT_KEY = 'uUXHfPG3u7Y5tV43'
+# from twilio.rest import Client
+# MERCHANT_KEY = 'uUXHfPG3u7Y5tV43'
 
 # Create your views here.
 
@@ -144,15 +144,15 @@ def handyman(request,myid):
 
         order = Orders(name=name, email=email, address=address, message=message, labour=labour, state=state, city=city, zip=zip, phone=phone, test=test, price=price)
         order.save()
-        account_sid = 'AC4ff948ab3352c5bba49d798d556b567d'
-        auth_token = '9257b8b13676e28169424c3c3153794d'
-        client = Client(account_sid, auth_token)
+        # account_sid = 'AC4ff948ab3352c5bba49d798d556b567d'
+        # auth_token = '9257b8b13676e28169424c3c3153794d'
+        # client = Client(account_sid, auth_token)
 
-        message = client.messages.create(
-                                        body=f'Hi, {name} your order has been placed Great job',
-                                        from_='+16205298550',
-                                        to='+91'+ phone 
-                                    )
+        # message = client.messages.create(
+        #                                 body=f'Hi, {name} your order has been placed Great job',
+        #                                 from_='+16205298550',
+        #                                 to='+91'+ phone 
+        #                             )
         thank = True
         id = order.id
         review = ReviewRating.objects.all()
@@ -164,23 +164,23 @@ def handyman(request,myid):
     return render(request, 'handyman.html', {'lab': labour[0],'review':review})
 
 
-@csrf_exempt
-def handlerequest(request):
-    #paytm send request here
-    form = request.POST
-    response_dict = {}
-    for i in form.keys():
-        response_dict[i] = form[i]
-        print("sdsd" ,response_dict[i])
-        if i == 'CHECKSUMHASH':
-            checksum = form[i]
-    verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
-    if verify:
-        if response_dict['RESPCODE'] == '01':
-            print('order Successfull')
-        else:
-            print('order was not success full' + response_dict['RESPMSG'])
-    return render(request,'paymentstatus.html',{'response': response_dict})
+# @csrf_exempt
+# def handlerequest(request):
+#     #paytm send request here
+#     form = request.POST
+#     response_dict = {}
+#     for i in form.keys():
+#         response_dict[i] = form[i]
+#         print("sdsd" ,response_dict[i])
+#         if i == 'CHECKSUMHASH':
+#             checksum = form[i]
+#     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
+#     if verify:
+#         if response_dict['RESPCODE'] == '01':
+#             print('order Successfull')
+#         else:
+#             print('order was not success full' + response_dict['RESPMSG'])
+#     return render(request,'paymentstatus.html',{'response': response_dict})
 
 
 
